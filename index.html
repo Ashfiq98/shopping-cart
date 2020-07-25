@@ -16,7 +16,7 @@
       <div class="container">
          <div class="cart">
             <div class="col-md-12 col-lg-10 mx-auto">
-               <div class="cart-item">
+               <div id="firstRemove" class="cart-item">
                   <div class="row">
                      <div class="col-md-7 center-item">
                         <img src="images/product-1.png" alt="">
@@ -30,12 +30,12 @@
                            <button id="add-1" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
                         <h5>$<span id="phone-price">1219</span></h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
+                        <img id="remove-sign-1" src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
                </div>
 
-               <div class="cart-item">
+               <div id="secondRemove" class="cart-item">
                   <div class="row">
                      <div class="col-md-7 center-item mx-auto">
                         <img src="images/product-2.png" alt="">
@@ -49,7 +49,7 @@
 
                         </div>
                         <h5>$<span id="case-price">59</span></h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
+                        <img id="remove-sign-2" src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
                </div>
@@ -83,13 +83,12 @@
 
       // remove button-1 work
 
-
       var remove1 = document.getElementById('remove-1');
       remove1.addEventListener('click', function () {
          var cartNo = document.getElementById('cart-no-1').value;
          var cartNoValue = parseFloat(cartNo);
 
-         if (cartNoValue > 1) {
+         if (cartNoValue >= 1) {
             cartNoValue--;
             document.getElementById('cart-no-1').value = cartNoValue;
 
@@ -115,7 +114,7 @@
          var cartNo = document.getElementById('cart-no-2').value;
          var cartNoValue = parseFloat(cartNo);
 
-         if (cartNoValue > 1) {
+         if (cartNoValue >= 1) {
             cartNoValue--;
             document.getElementById('cart-no-2').value = cartNoValue;
 
@@ -149,6 +148,25 @@
          document.getElementById('sub-total').innerText = subTotalAmount;
          document.getElementById('total').innerText = subTotalAmount;
       }
+       
+       //remove-buttons
+       var removeItem = document.getElementById('remove-sign-1');
+       removeItem.addEventListener('click',function(event){
+          removing('firstRemove');
+       })
+       var removeItem = document.getElementById('remove-sign-2');
+       removeItem.addEventListener('click',function(event){
+          removing('secondRemove');
+       })
+       function removing (id)
+       {
+          var firstRemove = document.getElementById(id);
+          firstRemove.style.display = 'none';
+         
+       }
+        
+        
+
    </script>
 
 </body>
