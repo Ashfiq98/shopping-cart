@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="remove-1" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="cart-no-1" type="text" class="form-control text-center" value="1">
+                           <button id="add-1" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$<span id="phone-price">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="remove-2" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="cart-no-2" type="text" class="form-control text-center" value="1">
+                           <button id="add-2" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$<span id="case-price">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -64,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
-                        <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$<span id="sub-total">1278</span></h5>
+                        <h5>$<span id="tax">00</span></h5>
+                        <h5>$<span id="total">1278</span></h5>
                      </div>
                   </div>
                </div>
@@ -77,6 +77,80 @@
          </div>
       </div>
    </section>
+
+
+   <script>
+
+      // remove button-1 work
+
+
+      var remove1 = document.getElementById('remove-1');
+      remove1.addEventListener('click', function () {
+         var cartNo = document.getElementById('cart-no-1').value;
+         var cartNoValue = parseFloat(cartNo);
+
+         if (cartNoValue > 1) {
+            cartNoValue--;
+            document.getElementById('cart-no-1').value = cartNoValue;
+
+            updateCart('phone-price',-1*1219,'phone-price', -1*1219 );
+         }
+      })
+
+      // add button-1 work
+      var add1 = document.getElementById('add-1');
+      add1.addEventListener('click', function () {
+         var cartNo = document.getElementById('cart-no-1').value;
+         var cartNoValue = parseFloat(cartNo);
+         cartNoValue++;
+         document.getElementById('cart-no-1').value = cartNoValue;
+
+
+         updateCart('phone-price',1219,'phone-price', 1219);
+      })
+
+      //remove-2 button work
+      var remove2 = document.getElementById('remove-2');
+      remove2.addEventListener('click', function () {
+         var cartNo = document.getElementById('cart-no-2').value;
+         var cartNoValue = parseFloat(cartNo);
+
+         if (cartNoValue > 1) {
+            cartNoValue--;
+            document.getElementById('cart-no-2').value = cartNoValue;
+
+            updateCart('case-price',-1*59,'case-price',-1*59);
+         }
+      })
+
+
+      // add-2 button work
+      var add1 = document.getElementById('add-2');
+      add1.addEventListener('click', function () {
+         var cartNo = document.getElementById('cart-no-2').value;
+         var cartNoValue = parseFloat(cartNo);
+         cartNoValue++;
+         document.getElementById('cart-no-2').value = cartNoValue;
+
+      
+         updateCart('case-price',59,'case-price', 59 );
+      })
+
+      function updateCart(id,price,id,price) {
+
+         var phonePrice = document.getElementById(id).innerText;
+         var phonePriceNumber = parseFloat(phonePrice);
+         var totalPrice = price + phonePriceNumber;
+         document.getElementById(id).innerText = totalPrice;
+
+         var subTotal = document.getElementById('sub-total').innerText;
+         var subTotalNumber = parseFloat(subTotal);
+         var subTotalAmount = price + subTotalNumber;
+         document.getElementById('sub-total').innerText = subTotalAmount;
+         document.getElementById('total').innerText = subTotalAmount;
+      }
+   </script>
+
 </body>
 
 </html>
